@@ -119,6 +119,7 @@ class Aggregate::BaseTest < ActiveSupport::TestCase
       assert @first == @same
       assert @first != @second
       assert @first < @second
+      assert @first != nil
     end
 
     should "support comparison for nested instances" do

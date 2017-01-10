@@ -23,9 +23,13 @@ module Aggregate
     end
 
     def <=>(other)
-      self.class.aggregated_attributes.map_and_find do |attr|
-        compare(send(attr.name), other.send(attr.name)).nonzero?
-      end || 0
+      if other.nil?
+        nil
+      else
+        self.class.aggregated_attributes.map_and_find do |attr|
+          compare(send(attr.name), other.send(attr.name)).nonzero?
+        end || 0
+      end
     end
 
     def root_aggregate_owner
